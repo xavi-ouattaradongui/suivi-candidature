@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 function ListeCandidatures() {
   const [candidatures, setCandidatures] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/candidatures").then((res) => setCandidatures(res.data));
+    axios.get(API_URL).then((res) => setCandidatures(res.data));
   }, []);
 
   return (

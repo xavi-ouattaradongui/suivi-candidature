@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 function Relances() {
   const [relances, setRelances] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/candidatures/relances").then((res) => setRelances(res.data));
+    axios.get(`${API_URL}/relances`).then((res) => setRelances(res.data));
   }, []);
 
   return (

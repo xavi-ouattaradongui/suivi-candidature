@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 function Candidatures() {
   const [candidatures, setCandidatures] = useState([]);
@@ -19,7 +20,7 @@ function Candidatures() {
   });
 
   const fetchCandidatures = () => {
-    axios.get("http://localhost:5000/api/candidatures").then((res) => {
+    axios.get(API_URL).then((res) => {
       setCandidatures(res.data);
       calculateStats(res.data);
     });
@@ -27,7 +28,7 @@ function Candidatures() {
 
   const fetchRelances = () => {
     axios
-      .get("http://localhost:5000/api/candidatures/relances")
+      .get(`${API_URL}/relances`)
       .then((res) => setRelances(res.data));
   };
 
@@ -41,7 +42,7 @@ function Candidatures() {
 
   const handleAddCandidature = () => {
     axios
-      .post("http://localhost:5000/api/candidatures", newCandidature)
+      .post(API_URL, newCandidature)
       .then(() => {
         fetchCandidatures();
         setNewCandidature({

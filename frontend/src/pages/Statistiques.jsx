@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 function Statistiques() {
   const [stats, setStats] = useState({ total: 0, enAttente: 0, accepte: 0, refuse: 0 });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/candidatures").then((res) => {
+    axios.get(API_URL).then((res) => {
       const data = res.data;
       const total = data.length;
       const enAttente = data.filter((c) => c.statut === "En attente").length;
